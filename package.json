@@ -13,6 +13,7 @@
   "author": "Ghena, Zeina & Masa",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodeman": "^1.1.2"
   }
 }
