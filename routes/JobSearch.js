@@ -37,7 +37,7 @@ router.get(
             if(err){
                 console.log(err)
             } else {
-                res.send(result)// for json : console.log(result) , the result will be on the console not postmannn
+                res.send(result)// for json : console.log(result) , the result will be on the console not postman
             }
         })
     }
