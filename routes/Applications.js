@@ -68,6 +68,7 @@ router.get("/getApplications/:employeerID/:jobID", (req, res) => {
                   requirements: row.requirements,
                   salary: row.salary,
                   location: row.location,
+                  rate: row.rate
                 });
               });
 
@@ -87,7 +88,25 @@ router.get("/getApplications/:employeerID/:jobID", (req, res) => {
   });
 });
 
-
+//Manage Applications By Giving Rate
+router.put("/setRate/:ApplicationID",(req,res)=>{
+  //Only Accessed by the employeer after getting the applications
+  const rate = req.body.rate;
+  const AppID=req.params.ApplicationID;
+  //const employee_id=req.params.employeeID;
+  if(rate>=0 && rate<=5){
+  con.query("UPDATE applications set rate=? WHERE id=?",[rate,AppID],(err,result)=>{
+      if(err)
+        console.log(err);
+        else {
+          res.send("Rate added successfully");
+        }
+      });
+  }
+  else{
+    res.send("Please Enter A Rate Between 0 and 5");
+  }
+});
 
 
 module.exports = router;
