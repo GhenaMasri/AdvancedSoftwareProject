@@ -108,5 +108,31 @@ router.put("/setRate/:ApplicationID",(req,res)=>{
   }
 });
 
+//Get Employee With Maximum Rate
+router.get("/FilterEmployeeWithMaxRate/:jobID", (req, res) => {
+  const jobID = req.params.jobID;
+  con.query( "SELECT a.employee_id, a.rate FROM applications a INNER JOIN (SELECT MAX(rate) AS max_rate FROM applications) m ON a.rate = m.max_rate", (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const employeeIds = [];
+      
+      for (let i = 0; i < results.length; i++) {
+        const row = results[i];
+        const employeeId = row.employee_id;
+        employeeIds.push(employeeId);
+      }
+      con.query("SELECT * FROM users WHERE id IN (?)", [employeeIds], (err, users) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(users);
+        }
+      });
+    }
+  });
+});
+
+
 
 module.exports = router;
