@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require ("express");
 const port = 3000;
 const axios = require('axios');
 const passport = require('passport');
@@ -13,13 +13,10 @@ app.use(express.json()); // New
 
 //Routes Initialization
 const appsRoutes = require("./routes/Applications");
-//const linkedInRoutes = require("./routes/LinkedInAPI");
+
 
 //Using Routes
 app.use("/apps", appsRoutes);
-//app.use("/LinkedIn",linkedInRoutes);
-
-
 
 // Configure passport and LinkedIn strategy
 passport.use(
