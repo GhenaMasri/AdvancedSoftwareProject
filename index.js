@@ -76,6 +76,33 @@ app.post('/jobsearch', async (req, res) => {
 });
 
 
+app.post('/indeedJobSearch',async(req,res)=>{
+  const axios = require('axios');
+
+const options = {
+  method: 'POST',
+  url: 'https://indeed11.p.rapidapi.com/',
+  headers: {
+    'content-type': 'application/json',
+    'X-RapidAPI-Key': 'c3f4089899msh47b5fadecce9088p1c9f0bjsn6de18817a9b4',
+    'X-RapidAPI-Host': 'indeed11.p.rapidapi.com'
+  },
+  data: {
+    search_terms: req.body.search_terms,
+    location: req.body.location,
+    page: req.body.page
+  }
+};
+
+try {
+	const response = await axios.request(options);
+	res.json(response.data);
+} catch (error) {
+	console.error(error);
+}
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
