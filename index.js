@@ -9,10 +9,12 @@ app.use(express.json()); // New
 //Routes Initialization
 const appsRoutes = require("./routes/Applications");
 const jobsRoutes = require("./routes/JobSearch");
+const loginRoutes = require("./routes/login");
 
 //Using Routes
 app.use("/apps", appsRoutes);
 app.use("/jobs", jobsRoutes);
+app.use("/logs", loginRoutes);
 
 
 app.listen(port, () => {
