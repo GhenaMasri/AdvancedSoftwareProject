@@ -5,6 +5,7 @@ const { upload, con} = require("../config/myConn");
 router.get(
     "/JobSearch/loc/:location", (req,res)=>{
         const joblocation = req.params.location;
+       // joblocation = joblocation.toLowerCase();
         con.query('select * from jobs where location=?',joblocation,(err,result)=>{
             if(err){
                 console.log(err)
@@ -18,11 +19,12 @@ router.get(
 router.get(
     "/JobSearch/tit/:title", (req,res)=>{
         const jobtitle = req.params.title;
+       // jobtitle=jobtitle.toLowerCase();
         con.query('select * from jobs where title=?',jobtitle,(err,result)=>{
             if(err){
                 console.log(err)
             } else {
-                res.send(result)// for json : console.log(result) , the result will be on the console not postman
+                res.send(result)//  for json : console.log(result) , the result will be on the console not postman
             }
         })
     }
