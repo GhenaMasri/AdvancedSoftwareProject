@@ -3,6 +3,8 @@ const router = express.Router();
 const { upload, con} = require("../config/myConn");
 const fs = require("fs");
 const path = require("path");
+const { sendEmails } = require('./gmail');
+var emails=null;
 
 const resumeDirectory = "../savedPDFs"; // Specify the directory path where the resumes will be saved
 // Create the directory if it doesn't exist
@@ -27,7 +29,6 @@ router.post(
     });
   }
 );
-
 
 
 router.get("/getApplications/:employeerID/:jobID", (req, res) => {
@@ -126,13 +127,31 @@ router.get("/FilterEmployeeWithMaxRate/:jobID", (req, res) => {
         if (err) {
           console.log(err);
         } else {
-          res.send(users);
-        }
-      });
+          emails = users.map((row) => row.email);
+       //
+         res.send(users);
+        //
+    }});
     }
   });
 });
 
+//Sending Emails for Employees with maximum rate to start interviewing
+router.post("/SendEmails",(req,res)=>{
+  if(emails != null){
+  sendEmails(emails)
+            .then(() => {
+              console.log('Emails sent successfully');
+              res.status(200).json({ message: 'Emails sent successfully.'});
+            })
+            .catch((error) => {
+              console.error('Error sending emails:', error);
+              res.status(500).json({ error: 'An error occurred while sending emails.' });
+            });
+        
 
+}
+else res.send("emails list is empty")
+});
 
 module.exports = router;
