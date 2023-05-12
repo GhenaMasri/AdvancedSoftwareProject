@@ -3,8 +3,9 @@ const port = 3000;
 const axios = require('axios');
 const passport = require('passport');
 const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
-const flag=0;
 let accessToken = null;
+
+
 
 const { app, mysql, upload } = require("./config/myConn");
 app.use(express.urlencoded({extended: true})); // New
@@ -75,7 +76,7 @@ app.post('/jobsearch', async (req, res) => {
   }
 });
 
-
+//External API to search for indeed jobs
 app.post('/indeedJobSearch',async(req,res)=>{
   const axios = require('axios');
 
@@ -100,7 +101,7 @@ try {
 } catch (error) {
 	console.error(error);
 }
-})
+});
 
 
 app.listen(port, () => {
