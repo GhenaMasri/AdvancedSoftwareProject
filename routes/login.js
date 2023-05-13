@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 router.post('/login', (req, res) => {
 
-    const { name , password } = req.body;
+    const { name , password } = req.body; 
 
     //const name = req.body.name;
     //const password = req.body.password;
@@ -24,7 +24,7 @@ router.post('/login', (req, res) => {
   
       // Check if the user exists
       if (results.length === 0) {
-        res.status(401).json({ error: 'Invalid username or password' });
+        res.status(401).json({ error: 'Invalid username or password' }); // invalid username 
         return;
       }
   
@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
   
       // Compare the provided password with the password in the database
       if (password != user.password) {
-        res.status(401).json({ error: 'Invalid username or password' });
+        res.status(401).json({ error: 'Invalid username or password' }); // invalid password 
         return;
       }
   
