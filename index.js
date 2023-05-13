@@ -10,6 +10,7 @@ let accessToken = null;
 const { app, mysql, upload } = require("./config/myConn");
 app.use(express.urlencoded({extended: true})); // New
 // Parse application/json
+//////
 app.use(express.json()); // New
 
 //Routes Initialization
