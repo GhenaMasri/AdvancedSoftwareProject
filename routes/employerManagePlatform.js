@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { upload, con} = require("../config/myConn");
-
+//
 router.post('/post/:employeerID',(req,res)=>{
     const employerID = req.params.employeerID;
   con.query  ("SELECT type FROM users WHERE id=?", [employerID], (err, results) => {
