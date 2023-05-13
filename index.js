@@ -5,6 +5,7 @@ const port = 3000;
 
 app.use(express.urlencoded({extended: true})); // New
 // Parse application/json
+//////
 app.use(express.json()); // New
 
 //Routes Initialization
