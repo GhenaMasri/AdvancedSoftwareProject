@@ -17,12 +17,15 @@ app.use(express.json()); // New
 const appsRoutes = require("./routes/Applications");
 const jobsRoutes = require("./routes/JobSearch");
 const loginRoutes = require("./routes/login");
+const employeRoutes = require("./routes/employe");
+
 
 
 //Using Routes
 app.use("/apps", appsRoutes);
 app.use("/jobs", jobsRoutes);
 app.use("/logs", loginRoutes);
+app.use("/emp",employeRoutes);
 
 // Configure passport and LinkedIn strategy
 passport.use(
