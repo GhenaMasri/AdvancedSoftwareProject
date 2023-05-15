@@ -17,7 +17,7 @@ app.use(express.json()); // New
 const appsRoutes = require("./routes/Applications");
 const jobsRoutes = require("./routes/JobSearch");
 const loginRoutes = require("./routes/login");
-const employeRoutes = require("./routes/employe");
+const employeRoutes = require("./routes/employerManagePlatform");
 
 
 
