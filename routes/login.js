@@ -8,8 +8,6 @@ router.post('/login', (req, res) => {
 
     const { name , password } = req.body; 
 
-    //const name = req.body.name;
-    //const password = req.body.password;
 
     const secretKey = '1234';
 
